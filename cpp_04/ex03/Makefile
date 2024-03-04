@@ -1,10 +1,11 @@
-NAME = ScavTrap
+NAME = materia
 
 CXX = c++
 
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -g
 
-SRCS =main.cpp ClapTrap.cpp ScavTrap.cpp
+SRCS =main.cpp AMateria.cpp Character.cpp Ice.cpp Cure.cpp \
+		MateriaSource.cpp
 
 all:$(NAME)
 $(NAME):$(SRCS)

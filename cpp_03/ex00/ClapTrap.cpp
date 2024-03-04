@@ -10,13 +10,10 @@ ClapTrap::ClapTrap(const std::string name):_name(name), _hp(10), _ep(10), _attac
 	std::cout << YELLOW << "Constructor called" << RESET << std::endl;
 }
 
-ClapTrap::ClapTrap(ClapTrap &src)
+ClapTrap::ClapTrap(const ClapTrap &src)
 {
 	std::cout << YELLOW << "Copy constructor called" << RESET << std::endl;
-	this->_name = src._name;
-	this->_hp = src._hp;
-	this->_ep = src._ep;
-	this->_attack_damage = src._attack_damage;
+	*this = src;
 }
 
 ClapTrap &ClapTrap::operator=(const ClapTrap &src)
@@ -32,7 +29,7 @@ ClapTrap &ClapTrap::operator=(const ClapTrap &src)
 
 ClapTrap::~ClapTrap(void)
 {
-	std::cout << YELLOW << "Distructor called" << RESET << std::endl;
+	std::cout << YELLOW << "destructor called" << RESET << std::endl;
 }
 
 void ClapTrap::attack(const std::string& target)

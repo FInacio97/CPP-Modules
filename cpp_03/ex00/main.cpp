@@ -5,6 +5,8 @@ int main()
 	ClapTrap moedas("moedas");
 	ClapTrap manel_acacio("manel_acacio");
 
+	ClapTrap test(moedas);
+
 	moedas.attack("manel_acacio");
 	manel_acacio.takeDamage(moedas.getAttackDamage());
 	manel_acacio.beRepaired(5);

@@ -11,11 +11,14 @@ ScavTrap::ScavTrap(const std::string name): ClapTrap(name)
 	_hp = 100;
 	_ep = 50;
 	_attack_damage = 20;
+	_ep_clone = _ep;
 }
 
 ScavTrap::ScavTrap(const ScavTrap &src): ClapTrap(src)
 {
+	std::cout << PURPLE << "ScavTrap copy constructor called" << RESET << std::endl;
 	*this = src;
+	_ep_clone = _ep;
 }
 
 ScavTrap &ScavTrap::operator=(const ScavTrap &src)
@@ -35,7 +38,7 @@ void	ScavTrap::guardGate()
 {
 	if (this->_hp <= 0)
 		return ;
-	std::cout << GREEN << this->_name << "is in Gate keeper mode." << RESET << std::endl;
+	std::cout << GREEN << this->_name << " is in Gate keeper mode." << RESET << std::endl;
 }
 
 void ScavTrap::attack(const std::string& target)

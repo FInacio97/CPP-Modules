@@ -3,7 +3,7 @@
 # ifndef SCAVTRAP_HPP
 # define SCAVTRAP_HPP
 
-class ScavTrap : public ClapTrap
+class ScavTrap : virtual public ClapTrap
 {
 	public:
 
@@ -15,6 +15,10 @@ class ScavTrap : public ClapTrap
 
 		void guardGate();
 		void attack(const std::string& target);
+	
+	protected:
+
+		int _ep_clone;
 };
 
 # endif

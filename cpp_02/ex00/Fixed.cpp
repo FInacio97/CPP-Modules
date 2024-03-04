@@ -20,7 +20,7 @@ Fixed &Fixed::operator=(const Fixed &rhs)
 
 Fixed::~Fixed(void)
 {
-	std::cout << YELLOW << "Distructor called" << RESET << std::endl;
+	std::cout << YELLOW << "destructor called" << RESET << std::endl;
 }
 
 int Fixed::getRawBits(void) const

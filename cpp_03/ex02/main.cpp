@@ -1,13 +1,10 @@
 # include "ClapTrap.hpp"
-# include "ScavTrap.hpp"
+# include "FragTrap.hpp"
 
 int main()
 {
-	ScavTrap moedas("moedas");
-	ScavTrap manel_acacio("manel_acacio");
-
-	ScavTrap test(moedas);
-	ScavTrap test2 = test;
+	FragTrap moedas("moedas");
+	FragTrap manel_acacio("manel_acacio");
 
 	moedas.attack("manel_acacio");
 	manel_acacio.takeDamage(moedas.getAttackDamage());
@@ -16,8 +13,10 @@ int main()
 	{
 		moedas.attack("manel_acacio");
 		manel_acacio.takeDamage(moedas.getAttackDamage());
+		if (manel_acacio.getHp() <= 0)
+			return (0);
 	}
-	manel_acacio.guardGate();
+	manel_acacio.highFivesGuys();
 	manel_acacio.attack("moedas");
 	moedas.takeDamage(manel_acacio.getAttackDamage());
 	manel_acacio.attack("moedas");
