@@ -5,7 +5,7 @@ Ice::Ice(void) : AMateria("ice")
 	std::cout << YELLOW << "Ice default constructor called" << RESET << std::endl;
 }
 
-Ice::Ice(const Ice &src)
+Ice::Ice(const Ice &src) : AMateria(src)
 {
 	std::cout << YELLOW << "Ice copy constructor called" << RESET << std::endl;
 	*this = src;

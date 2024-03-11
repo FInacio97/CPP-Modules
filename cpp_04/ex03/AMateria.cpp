@@ -13,6 +13,7 @@ AMateria::AMateria(const AMateria &src)
 
 AMateria &AMateria::operator=(const AMateria &src)
 {
+	(void) src;
 	return (*this);
 }
 
@@ -31,7 +32,7 @@ std::string const &AMateria::getType() const
 	return (_type);
 }
 
-void	use(ICharacter& target)
+void	AMateria::use(ICharacter& target)
 {
 	std::cout << CYAN << "* Something happened to " << target.getName() << RESET << std::endl;
 }

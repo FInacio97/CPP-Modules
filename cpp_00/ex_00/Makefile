@@ -10,4 +10,7 @@ all:$(NAME)
 $(NAME):$(SRCS)
 	$(CXX) $(CXXFLAGS) $(SRCS) -o $(NAME)
 
+fclean:
+	rm $(NAME)
+
 .PHONY: all

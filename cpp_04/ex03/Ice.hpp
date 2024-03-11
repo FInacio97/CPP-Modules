@@ -14,6 +14,7 @@ class Ice : public AMateria
 
 		virtual AMateria	*clone() const;
 		virtual void		use(ICharacter& target);
+
 };
 
 # endif

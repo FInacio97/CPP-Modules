@@ -6,7 +6,7 @@
 
 # define NBR_SLOTS 4
 
-class Character : ICharacter
+class Character : public ICharacter
 {
 	public:
 
@@ -23,16 +23,13 @@ class Character : ICharacter
 		virtual void				use(int idx, ICharacter& target);
 	
 		void	DisplaySlots() const;
+		void	DisplayFloor() const;
 
 	protected:
 
 			std::string _name;
 			AMateria	*_slots[NBR_SLOTS];
+			AMateria	*_floor[NBR_SLOTS];
 };
-
-		//std::string			&getName() = 0;
-
-
-
 
 # endif
