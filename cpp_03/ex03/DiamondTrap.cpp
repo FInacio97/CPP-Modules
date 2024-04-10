@@ -2,18 +2,18 @@
 
 DiamondTrap::DiamondTrap(void) : ClapTrap(), ScavTrap(), FragTrap()
 {
-	std::cout << PURPLE << "DiamontTrap default constructor called" << RESET << std::endl;
+	std::cout << PURPLE << "DiamontTrap default constructor called on memory address: " << GREEN << this << RESET << std::endl;
 }
 
 DiamondTrap::DiamondTrap(const DiamondTrap &src) : ClapTrap(src), ScavTrap(src), FragTrap(src)
 {
-	std::cout << PURPLE << "DiamondTrap copy constructor called" << RESET << std::endl;
+	std::cout << PURPLE << "DiamondTrap copy constructor called on memory address: " << GREEN << this << RESET << std::endl;
 	*this = src;
 }
 
 DiamondTrap::DiamondTrap(const std::string name) : ClapTrap(name + "_clap_name"), ScavTrap(name), FragTrap(name), _name(name)
 {
-	std::cout << PURPLE << "DiamondTrap constructor called" << RESET << std::endl;
+	std::cout << PURPLE << "DiamondTrap constructor called on memory address: " << GREEN << this << RESET << std::endl;
 	this->_ep = _ep_clone;
 }
 

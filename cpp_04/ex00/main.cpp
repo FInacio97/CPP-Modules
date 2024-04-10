@@ -32,7 +32,9 @@ int main()
         Dog tmp = basic;
     }
 
+    std::cout << "\n==================\n";
     delete wrongJ;
+    std::cout << "==================\n";
     delete wrongMeta;
 
     return 0;

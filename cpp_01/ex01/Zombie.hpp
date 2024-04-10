@@ -12,17 +12,6 @@
 # define PURPLE "\e[4;35m"
 # define RESET "\e[0m"
 
-# define H0 6
-# define H1 5
-# define H2 7
-# define H3 23
-# define H4 12
-# define H5 43
-# define H6 2
-# define H7 1
-# define H8 0
-# define H9 34
-
 class Zombie
 {
 	public:

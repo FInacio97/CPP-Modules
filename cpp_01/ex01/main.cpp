@@ -11,9 +11,9 @@ int main()
 	Zombie *horde_1;
 	Zombie *horde_2;
 	Zombie *horde_3;
-	const int N1 = 0;
-	const int N2 = H2;
-	const int N3 = H3;
+	const int N1 = 3;
+	const int N2 = 7;
+	const int N3 = 12;
 
 	horde_1 = zombieHorde(N1, "Joca");
 	horde_anouncement(N1, horde_1);
@@ -22,10 +22,10 @@ int main()
 	horde_anouncement(N2, horde_2);
 	horde_anouncement(N3, horde_3);
 	
-	// if (N1)
+	if (N1 > 0)
 		delete [] horde_1;
-	if (N2)
+	if (N2 > 0)
 		delete [] horde_2;
-	if (N3)
+	if (N3 > 0)
 		delete [] horde_3;
 }

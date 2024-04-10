@@ -2,17 +2,17 @@
 
 ClapTrap::ClapTrap(void):_name(NULL), _hp(0), _ep(0), _attack_damage(0)
 {
-	std::cout << YELLOW << "Default constructor called" << RESET << std::endl;
+	std::cout << YELLOW << "Default constructor called on memory address: " << GREEN << this << RESET << std::endl;
 }
 
 ClapTrap::ClapTrap(const std::string name):_name(name), _hp(10), _ep(10), _attack_damage(0)
 {
-	std::cout << YELLOW << "Constructor called" << RESET << std::endl;
+	std::cout << YELLOW << "Constructor called on memory address: " << GREEN << this << RESET << std::endl;
 }
 
 ClapTrap::ClapTrap(const ClapTrap &src)
 {
-	std::cout << YELLOW << "Copy constructor called" << RESET << std::endl;
+	std::cout << YELLOW << "Copy constructor called on memory address: " << GREEN << this << RESET << std::endl;
 	this->_name = src._name;
 	this->_hp = src._hp;
 	this->_ep = src._ep;

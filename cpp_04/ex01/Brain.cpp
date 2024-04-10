@@ -9,6 +9,7 @@ Brain::Brain(void)
 
 Brain::Brain(const Brain &src)
 {
+	std::cout << CYAN << "It has a brain! It comes from another brain..." << std::endl;
 	*this = src;
 }
 

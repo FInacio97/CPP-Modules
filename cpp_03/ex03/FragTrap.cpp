@@ -2,18 +2,18 @@
 
 FragTrap::FragTrap(void): ClapTrap()
 {
-	std::cout << PURPLE << "FragTrap default constructor called" << RESET << std::endl;
+	std::cout << PURPLE << "FragTrap default constructor called on memory address: " << GREEN << this << RESET << std::endl;
 }
 
 FragTrap::FragTrap(const FragTrap &src): ClapTrap(src)
 {
-	std::cout << PURPLE << "FragTrap copy constructor called" << RESET << std::endl;
+	std::cout << PURPLE << "FragTrap copy constructor called on memory address: " << GREEN << this << RESET << std::endl;
 	*this = src;
 }
 
 FragTrap::FragTrap(const std::string name): ClapTrap(name)
 {
-	std::cout << PURPLE << "FragTrap constructor called" << RESET << std::endl;
+	std::cout << PURPLE << "FragTrap constructor called on memory address: " << GREEN << this << RESET << std::endl;
 	_hp = 100;
 	_ep = 100;
 	_attack_damage = 30;

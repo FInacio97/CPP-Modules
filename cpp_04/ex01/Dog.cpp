@@ -16,10 +16,16 @@ Dog::Dog(const Dog &src) : Animal(src), _brain(NULL)
 Dog &Dog::operator=(const Dog &src)
 {
 	if (this == &src)
+	{
+		std::cout << "this == &src\n";
 		return (*this);
+	}
 	this->Animal::operator=(src);
 	if (this->_brain)
+	{
+		std::cout << "brain deleted";
 		delete _brain;
+	}
 	this->_brain = new Brain(*src._brain);
 	return (*this);
 }

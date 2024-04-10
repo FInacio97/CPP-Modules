@@ -9,7 +9,6 @@ Dog::Dog(void) : Animal()
 Dog::Dog(const Dog &src) : Animal(src)
 {
 	std::cout << GREEN << "Its another Dog!" << RESET << std::endl;
-	std::cout << "yo yo yo" << std::endl;
 	*this = src;
 }
 

@@ -2,12 +2,12 @@
 
 ScavTrap::ScavTrap(void): ClapTrap()
 {
-	std::cout << PURPLE << "ScavTrap default constructor called" << RESET << std::endl;
+	std::cout << PURPLE << "ScavTrap default constructor called on memory address: " << GREEN << this << RESET << std::endl;
 }
 
 ScavTrap::ScavTrap(const std::string name): ClapTrap(name) 
 {
-	std::cout << PURPLE << "ScavTrap constructor called" << RESET << std::endl;
+	std::cout << PURPLE << "ScavTrap constructor called on memory address: " << GREEN << this << RESET << std::endl;
 	_hp = 100;
 	_ep = 50;
 	_attack_damage = 20;
@@ -16,7 +16,7 @@ ScavTrap::ScavTrap(const std::string name): ClapTrap(name)
 
 ScavTrap::ScavTrap(const ScavTrap &src): ClapTrap(src)
 {
-	std::cout << PURPLE << "ScavTrap copy constructor called" << RESET << std::endl;
+	std::cout << PURPLE << "ScavTrap copy constructor called on memory address: " << GREEN << this << RESET << std::endl;
 	*this = src;
 	_ep_clone = _ep;
 }

@@ -9,27 +9,6 @@ Contact::Contact(void)
 	this->info[4] = "Empty";
 }
 
-// void Contact::print_info(std::string index)
-// {
-// 	int empty_chars;
-// 	int i;
-// 	std::string spaces = "         ";
-
-// 	std::cout << "index   " << index;
-// 	for (i = 0; i <= 2; i++)
-// 	{
-// 		empty_chars = 10 - this->info[i].length();
-// 		if (empty_chars < 0)
-// 			std::cout << "|" << this->info[i].substr(0, 9) <<  ".";
-// 		else if (empty_chars == 0)
-// 			std::cout << "|" << this->info[i];
-// 		else
-// 			std::cout << "|" << spaces.substr(0, empty_chars) << this->info[i];
-// 	}
-// 	std::cout << std::endl;
-// }	
-
-
 void Contact::set_info(std::string content, int i)
 {
 	this->info[i] = content;
