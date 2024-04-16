@@ -7,10 +7,14 @@ Bureaucrat::Bureaucrat(const Bureaucrat &src) : _name(src._name)
     *this = src;
 }
 
-Bureaucrat::Bureaucrat(const std::string &name, const int grade) : _name(name),
-                                                                 _grade(grade)
+Bureaucrat::Bureaucrat(const std::string &name, const int grade) : _name(name)
 {
-    // protect for invalid grade
+    if (grade < 1)
+        throw GradeTooHighException();
+    else if (grade > 150)
+        throw GradeTooLowException();
+    else
+        _grade = grade;
 }
 
 Bureaucrat &Bureaucrat::operator=(const Bureaucrat &src)
@@ -35,15 +39,17 @@ int Bureaucrat::getGrade() const
 
 Bureaucrat &Bureaucrat::operator++()
 {
-    if (_grade > 1)
-        _grade--;
+    _grade--;
+    if (_grade < 1)
+        throw Bureaucrat::GradeTooHighException();
     return (*this);
 }
 
 Bureaucrat &Bureaucrat::operator--()
 {
-    if (_grade < 150)
-        _grade++;
+    _grade++;
+    if (_grade > 150)
+        throw Bureaucrat::GradeTooLowException();
     return (*this);
 }
 
