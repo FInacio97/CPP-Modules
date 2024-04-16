@@ -2,21 +2,28 @@
 
 int main()
 {
-    Bureaucrat Fernando("Fernando", 75);
-    Bureaucrat Carlos("Carlos", 5);
+    try
+    {
+        Bureaucrat Fernando("Fernando", 75);
+        Bureaucrat Carlos("Carlos", 533);
 
-    std::cout << Fernando << Carlos;
+        std::cout << Fernando << Carlos;
 
-    Bureaucrat copy(Fernando);
+        Bureaucrat copy(Fernando);
 
-    std::cout << copy;
+        std::cout << copy;
 
-    copy = Carlos;
+        copy = Carlos;
 
-    std::cout << copy;
+        std::cout << copy;
 
-    ++Carlos;
-    --Fernando;
+        ++Carlos;
+        --Fernando;
 
-    std::cout << Fernando << Carlos;
+        std::cout << Fernando << Carlos;
+    }
+    catch (const std::exception &e)
+    {
+        std::cerr << e.what() << '\n';
+    }
 }
