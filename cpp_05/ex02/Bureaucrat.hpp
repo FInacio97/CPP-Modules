@@ -4,7 +4,7 @@
 # ifndef BUREAUCRAT_HPP
 # define BUREAUCRAT_HPP
 
-# include "Form.hpp"
+# include "AForm.hpp"
 
 # define CYAN "\e[0;36m"
 # define GREEN "\e[0;32m"
@@ -13,7 +13,7 @@
 # define PURPLE "\e[4;35m"
 # define RESET "\e[0m"
 
-class Form;
+class AForm;
 
 class Bureaucrat
 {
@@ -45,7 +45,7 @@ class Bureaucrat
                 }
         };
 
-        void signForm(Form &form);
+        void signAForm(AForm &aform);
 
     private:
 

@@ -1,10 +1,10 @@
-NAME = Form
+NAME = AForm
 
 CXX = c++
 
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -g
 
-SRCS = main.cpp Form.cpp Bureaucrat.cpp
+SRCS = main.cpp AForm.cpp Bureaucrat.cpp
 
 all:$(NAME)
 $(NAME):$(SRCS)

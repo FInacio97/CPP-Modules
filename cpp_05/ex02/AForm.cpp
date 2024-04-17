@@ -1,31 +1,31 @@
-# include "Form.hpp"
+# include "AForm.hpp"
 
-Form::Form(void) : _name("Nameless"), _signature(false),
+AForm::AForm(void) : _name("Nameless"), _signature(false),
                     _gradeToSign(0), _gradeToExec(0) {}
 
-Form::Form(const Form &src) : _name(src._name), _signature(false),
+AForm::AForm(const AForm &src) : _name(src._name), _signature(false),
                              _gradeToSign(src._gradeToSign), _gradeToExec(src._gradeToExec) {}
 
-Form::Form(const std::string name, const int gts, const int gte) : _name(name), _signature(false),
+AForm::AForm(const std::string name, const int gts, const int gte) : _name(name), _signature(false),
                            _gradeToSign(gts), _gradeToExec(gte)
 {
     if (_gradeToSign > 150 || _gradeToExec > 150)
-        throw Form::GradeTooLowException();
+        throw AForm::GradeTooLowException();
     if (_gradeToSign < 1 || _gradeToExec < 1)
-        throw Form::GradeTooHighException();
+        throw AForm::GradeTooHighException();
 }
 
-Form    &Form::operator=(const Form &src) {
+AForm    &AForm::operator=(const AForm &src) {
     (void) src;
     return (*this);
 }
 
-Form::~Form() {}
+AForm::~AForm() {}
 
-std::ostream &operator<<(std::ostream &o, Form &src)
+std::ostream &operator<<(std::ostream &o, AForm &src)
 {
     o << CYAN << "+++++++++++++++++++++++++++++++++++++++++++++++++++\n" << RESET;
-    o << PURPLE << "\t" << src.getName() << CYAN << " Form Info:\n" << RESET;
+    o << PURPLE << "\t" << src.getName() << CYAN << " AForm Info:\n" << RESET;
     o << YELLOW << "\t\tGrade to sign--------> " << CYAN << src.getGradeToSign() << std::endl << RESET;
     o << YELLOW << "\t\tGrade to execute-----> " << CYAN << src.getGradeToExec() << std::endl << RESET;
 
@@ -38,29 +38,29 @@ std::ostream &operator<<(std::ostream &o, Form &src)
     return (o);
 }
 
-const std::string &Form::getName() const {
+const std::string &AForm::getName() const {
     return (_name);
 }
 
-bool Form::getSignature() const {
+bool AForm::getSignature() const {
     return (_signature);
 }
 
-int Form::getGradeToSign() const {
+int AForm::getGradeToSign() const {
     return (_gradeToSign);
 }
 
-int Form::getGradeToExec() const {
+int AForm::getGradeToExec() const {
     return (_gradeToExec);
 }
 
-void Form::beSigned(Bureaucrat &bureaucrat)
+void AForm::beSigned(Bureaucrat &bureaucrat)
 {
     
     if (bureaucrat.getGrade() <= _gradeToSign)
          _signature = true;
     else
-        throw Form::GradeTooLowException();
+        throw AForm::GradeTooLowException();
 }
 
 
