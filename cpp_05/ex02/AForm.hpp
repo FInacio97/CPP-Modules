@@ -17,6 +17,7 @@ class AForm
 {
     public:
 
+        AForm(void);
         AForm(const AForm &src);
         AForm(const std::string name, const int gts, const int gte);
         virtual ~AForm();
@@ -41,11 +42,17 @@ class AForm
             }
         };
 
+        class FormPrevSignedException : public std::exception{
+            virtual const char *what() const throw(){
+                return ("Form was already signed");
+            }
+        };
+
+
         virtual void execute(Bureaucrat const & executor) const = 0;
 
     private:
         
-        AForm(void);
         AForm &operator=(const AForm &src);
 
         const std::string   _name;

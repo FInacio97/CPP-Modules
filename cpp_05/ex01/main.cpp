@@ -12,6 +12,8 @@ int main()
         std::cout << yolo;
         Arminda.signForm(yolo);
         std::cout << yolo;
+        Arminda.signForm(yolo);
+        std::cout << yolo;
     }
     catch(const std::exception& e)
     {

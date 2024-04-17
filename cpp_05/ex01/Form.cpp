@@ -56,7 +56,8 @@ int Form::getGradeToExec() const {
 
 void Form::beSigned(Bureaucrat &bureaucrat)
 {
-    
+    if (_signature)
+        throw Form::FormPrevSignedException();
     if (bureaucrat.getGrade() <= _gradeToSign)
          _signature = true;
     else

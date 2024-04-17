@@ -41,6 +41,12 @@ class Form
             }
         };
 
+        class FormPrevSignedException : public std::exception{
+            virtual const char *what() const throw(){
+                return ("Form was already signed");
+            }
+        };
+
     private:
         
         Form(void);
