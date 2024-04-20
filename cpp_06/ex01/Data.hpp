@@ -12,6 +12,7 @@ class Data
         ~Data(void);
 
         int getValue() const;
+        void setValue(const int val);
 
     private:
 

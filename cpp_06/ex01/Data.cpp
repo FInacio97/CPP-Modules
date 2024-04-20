@@ -14,3 +14,5 @@ Data &Data::operator=(Data &src) {
 Data::~Data(){}
 
 int Data::getValue() const {return (_val);}
+
+void Data::setValue(const int val) {_val = val;}

@@ -102,4 +102,6 @@ int main()
 
     indentify(ptr);
     indentify(*ptr);
+
+    delete ptr;
 }
