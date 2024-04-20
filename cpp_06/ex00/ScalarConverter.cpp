@@ -14,14 +14,17 @@ ScalarConverter::~ScalarConverter(){}
 
 /*+++++++++++++++ ||    Convertion and Parsing     || ++++++++++++++++*/
 
+static void trimEnd(std::string &str)
+{
+    int len = str.length();
+
+    while (--len && std::isspace(str[len]))
+        ;
+    str[++len] = 0;
+}
+
 static bool isPseudo(std::string &value, int &state)
 {
-        // std::cout << value.compare("+inff") << "\n";
-        // std::cout << value.compare("-inff") << "\n";
-        // std::cout << value.compare("nanf") << "\n";
-        // std::cout << value.compare("+inf") << "\n";
-        // std::cout << value.compare("-inf") << "\n";
-        // std::cout << value.compare("nan") << "\n";
     if (!value.compare("+inff") || !value.compare("-inff") || !value.compare("nanf")
             || !value.compare("+inf") || !value.compare("-inf") || !value.compare("nan"))
     {
@@ -33,7 +36,7 @@ static bool isPseudo(std::string &value, int &state)
 
 static bool isChar(std::string &value, int &state)
 {
-    if (value.length() == 1 && std::isalpha(*(value.c_str())))
+    if (value.length() == 1 && !std::isdigit(*(value.c_str())))
     {
         state = CHAR;
         return (true);
@@ -41,20 +44,22 @@ static bool isChar(std::string &value, int &state)
     return (false);
 }
 
-static void trimEnd(std::string &str)
-{
-    int len = str.length();
-
-    while (--len && std::isspace(str[len]))
-        ;
-    str[++len] = 0;
-}
-
 static bool isNumber(std::string &value, int &state)
 {
     int i = 0;
+    int digit_flag = 0;
 
     trimEnd(value);
+
+    while (value[i])
+        if (std::isdigit(value[i++]))
+        {
+            digit_flag++;
+            i = 0;
+            break ;
+        }
+    if (!digit_flag)
+        return (false);
 
     while (value[i] && std::isspace(value[i]))
         i++;
@@ -72,21 +77,84 @@ static bool isNumber(std::string &value, int &state)
         i++;
         while (value[i] && std::isdigit(value[i]))
             i++;
-        std::cout << value[i] << std::endl;
         if (value[i] == 'f' && !value[i + 1])
             state = FLOAT;
         else if (!value[i])
             state = DOUBLE;
         else
-        {
-            std::cout << "cenas\n";
             return (false);
     }
     else 
         return (false);
-
+    
     return (true);
 
+}
+
+void displayPseudo(std::string &value)
+{
+    std::string display;
+    if (!value.compare("nan") || !value.compare("nanf"))
+        display = "nan";
+    else if (!value.compare("+inf") || !value.compare("+inff"))
+        display = "+inf";
+    else if (!value.compare("-inf") || !value.compare("-inff"))
+        display = "-inf";
+    
+    std::cout << CYAN <<"char: " << PURPLE << "impossible\n" << RESET;
+    std::cout << CYAN <<"int: " << PURPLE << "impossible\n" << RESET;
+    std::cout << CYAN <<"float: " << display << "f\n" << RESET;
+    std::cout << CYAN <<"double: " << display << std::endl << RESET;
+
+}
+
+static void displayChar(std::string &value)
+{
+    char c = value[0];
+    if (std::isprint(c))
+        std::cout << CYAN <<"char: " << GREEN << "'" << c << "'\n" << RESET;
+    else
+        std::cout << CYAN <<"char: " << PURPLE << "Non displayable\n" << RESET;
+    
+    std::cout << CYAN <<"int: " << GREEN << static_cast<int>(c) << "\n" << RESET;
+    std::cout << CYAN <<"float: " << GREEN << std::fixed << std::setprecision(1) << static_cast<float>(c) << "f\n" << RESET;
+    std::cout << CYAN <<"double: " << GREEN << std::fixed << std::setprecision(1) << static_cast<double>(c) << "\n" << RESET;
+    
+}
+
+static void displayNumber(std::string &value)
+{
+    bool impossible = true;
+    double val = std::strtod(value.c_str(), NULL);
+
+    if (val == HUGE_VAL || val == -HUGE_VAL || errno == ERANGE)
+        impossible = false;
+
+    if (!impossible || val <= -129 || val >= 128)
+        std::cout << CYAN <<"char: " << PURPLE << "impossible\n" << RESET;
+    else
+    {
+        char c = static_cast<char>(val);
+        if (std::isprint(c))
+            std::cout << CYAN <<"char: " << GREEN << "'" << c << "'\n" << RESET;
+        else
+            std::cout << CYAN <<"char: " << PURPLE << "Non displayable\n" << RESET;
+    }
+
+    if (!impossible || val < INT_MIN || val > INT_MAX)
+        std::cout << CYAN <<"int: " << PURPLE << "impossible\n" << RESET;
+    else
+        std::cout << CYAN <<"int: " << GREEN << static_cast<int>(val) << "\n" << RESET;
+    
+    if (!impossible || val < -MAXFLOAT || val > MAXFLOAT)
+        std::cout << CYAN <<"float: " << PURPLE << "impossible\n" << RESET;
+    else
+        std::cout << CYAN <<"float: " << GREEN << std::fixed << std::setprecision(1) << static_cast<float>(val) << "f\n" << RESET;
+    
+    if (impossible)
+        std::cout << CYAN <<"double: " << GREEN << std::fixed << std::setprecision(1) << static_cast<double>(val) << "\n" << RESET;
+    else   
+        std::cout << CYAN <<"double: " << PURPLE << "impossible\n" << RESET;
 }
 
 void ScalarConverter::converter(std::string &value)
@@ -94,7 +162,10 @@ void ScalarConverter::converter(std::string &value)
     int state = 0;
 
     if (!value.length())
+    {
         std::cerr << RED << "Error: empty string\n" << RESET;
+        return ;
+    }
 
     if (isPseudo(value, state) || isChar(value, state) || isNumber(value, state))
     {
@@ -105,35 +176,18 @@ void ScalarConverter::converter(std::string &value)
             break;
 
         case PSEUDO:
-            std::cout << "Pseudo\n";
+            displayPseudo(value);
             break;
 
         case CHAR:
-            std::cout << "Char\n";
-            break;
-
-        case INT:
-            std::cout << "Int\n";
-            break;
-
-        case FLOAT:
-            std::cout << "Float\n";
-            break;
-        
-        case DOUBLE:
-            std::cout << "Double\n";
+            displayChar(value);
             break;
 
         default:
-            std::cout << "No waaaaay...\n";
+            displayNumber(value);
             break;
         }
     }
     else
         std::cerr << RED << "Error: invalid input\n" << RESET;
 }
-
-/*
-    test: ".039"
-
-*/

@@ -3,6 +3,11 @@
 
 # include <iostream>
 # include <string>
+# include <stdlib.h>
+# include <cmath>
+# include <errno.h>
+# include <iomanip>
+# include <limits.h>
 
 # define CYAN "\e[0;36m"
 # define GREEN "\e[0;32m"
