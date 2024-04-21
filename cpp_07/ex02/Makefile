@@ -1,4 +1,4 @@
-NAME = iter
+NAME = Array
 
 CXX = c++
 
