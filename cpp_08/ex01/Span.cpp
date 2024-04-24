@@ -51,7 +51,8 @@ int Span::shortestSpan()
         return (_minSpan);
     }
     if (_minSpan == -1)
-        _minSpan = *(_vector.begin() + 1) - *(_vector.begin());    
+        _minSpan = *(_vector.begin() + 1) - *(_vector.begin()); 
+          
     for (it = _vector.begin(); it != (_vector.end() - 1); ++it)
     {
         diff = *(it + 1) - *it;
@@ -63,7 +64,7 @@ int Span::shortestSpan()
 
 int Span::generate()
 {
-    return (rand() % 10000);
+    return (std::rand() % 10000);
 }
 
 void Span::addRandom(const unsigned int amount)
@@ -74,9 +75,10 @@ void Span::addRandom(const unsigned int amount)
         return ;
     }
 
-    // std::vector<int>::iterator it = _vector.begin(); 
-
+    _vector.resize(amount);
     std::generate(_vector.begin(), _vector.end(), generate);
+    std::sort(_vector.begin(), _vector.end());
+    _newNmbr = true;
 }
 
 void Span::displayArray()
@@ -87,3 +89,4 @@ void Span::displayArray()
     for (it = _vector.begin(); it != _vector.end(); it++)
          std::cout << "element[" << i++ << "]: " << *it << std::endl; 
 }
+
