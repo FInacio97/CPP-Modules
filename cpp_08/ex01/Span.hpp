@@ -8,11 +8,16 @@
 # include <ctime>
 # include <climits>
 
+# define RAND_RANGE 1000000000
+
 class Span
 {
     public:
 
-        Span(unsigned int N);
+        Span();
+        Span(const unsigned int N);
+        Span(const Span &src);
+        Span &operator=(const Span &src);
         ~Span(void);
 
         void addNumber(const int value);
@@ -24,11 +29,6 @@ class Span
         static int generate();
 
     private:
-
-        Span(void);
-        Span(Span &src);
-        Span &operator=(Span &src);
-
 
         std::vector<int> _vector;
         unsigned int    _size;

@@ -2,18 +2,32 @@
 
 /* ===============| Constructors |=================== */
 
-Span::Span(void) : _size(0), _minSpan(-1), _newNmbr(false) {}
-
-Span::Span(Span &src) : _size(0), _minSpan(-1), _newNmbr(false)
-{
-    (void) src; 
+Span::Span() : _size(0), _minSpan(-1), _newNmbr(false) {
+    std::srand(std::time(NULL));
 }
 
-Span::Span(unsigned int N) : _size(N), _minSpan(-1), _newNmbr(false) {}
+Span::Span(const Span &src)
+{
+    std::srand(std::time(NULL));
+    *this = src;
+}
 
-Span &Span::operator=(Span &src)
-{   
-    (void) src;
+Span::Span(const unsigned int N) : _size(N), _minSpan(-1), _newNmbr(false) {
+    std::srand(std::time(NULL));
+}
+
+Span &Span::operator=(const Span &src)
+{
+    if (this == &src)
+        return (*this);
+    
+    this->_size = src._size;
+    this->_minSpan = src._minSpan;
+    this->_newNmbr = src._newNmbr;
+
+    this->_vector.resize(src._vector.size());
+    std::copy(src._vector.begin(), src._vector.end(), this->_vector.begin());
+
     return (*this);
 }
 
@@ -64,12 +78,12 @@ int Span::shortestSpan()
 
 int Span::generate()
 {
-    return (std::rand() % 10000);
+    return (std::rand() % RAND_RANGE);
 }
 
 void Span::addRandom(const unsigned int amount)
 {
-    if ((_size - _vector.size()) < amount)
+    if (_size < amount)
     {
         std::cerr << "vector doesnt have enough capacity\n";
         return ;
