@@ -12,17 +12,14 @@ int main(int ac, char **av)
     {
         BitcoinExchange a;
 
-        a.extractDataBase();
+        a.extractDB();
+        // a.displayMap();
+        a.Exchange(av[1]);
 
-
-        
-        // a.parser(av[1]);
-        // a.checkValue(av[1]);
-        // a.checkDate(av[1]);
     }
     catch(const std::exception& e)
     {
-        std::cerr << e.what();
+        std::cout << e.what();
     }
     
 }
