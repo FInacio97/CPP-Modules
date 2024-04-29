@@ -31,4 +31,5 @@ int main()
         std::cout << tmp.getBrain() << std::endl;
         std::cout << basic.getBrain() << std::endl;
     }
+
 }

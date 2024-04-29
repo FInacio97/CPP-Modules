@@ -23,22 +23,15 @@ class BitcoinExchange
         void checkDate(const std::string &date);
         float checkValue(const std::string &str, bool isDB);
         void parserDB(const std::string &line);
-        void parserInput(const std::string &line);
+        void parserInput(std::string &line);
 
         void extractDB();
         void displayMap();
         void Exchange(char *path);
 
         // Exceptions
-        class WrongValueException : public std::exception{
-            const char *what(void) const throw();
-        };
 
         class MultiplierTooHighException : public std::exception{
-            const char *what(void) const throw();
-        };
-        
-        class ImpossibleDateException : public std::exception{
             const char *what(void) const throw();
         };
         
@@ -50,10 +43,10 @@ class BitcoinExchange
             const char *what(void) const throw();
         };
         
-        class BadDateException : public std::exception{
+        class BadInputException : public std::exception{
             public:
-                BadDateException(const std::string &date);
-                virtual ~BadDateException() throw ();
+                BadInputException(const std::string &date);
+                virtual ~BadInputException() throw ();
                 const char *what() const throw();
             private:
                 std::string _err;
