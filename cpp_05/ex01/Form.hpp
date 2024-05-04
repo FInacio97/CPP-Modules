@@ -50,7 +50,7 @@ class Form
     private:
         
         Form(void);
-        Form &operator=(const Form &src);
+        Form &operator=(const Form &src); //TODO: make this public
 
         const std::string   _name;
         bool                _signature;

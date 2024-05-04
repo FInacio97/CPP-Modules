@@ -16,7 +16,7 @@ class PresidentialPardonForm : public AForm
     private:
 
         PresidentialPardonForm(void);
-        PresidentialPardonForm &operator=(PresidentialPardonForm &src);
+        PresidentialPardonForm &operator=(PresidentialPardonForm &src); // TODO: take care of all the = overloads, don't make them private
         
         std::string _target;
 };

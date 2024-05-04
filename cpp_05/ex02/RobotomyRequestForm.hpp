@@ -18,7 +18,7 @@ class RobotomyRequestForm : public AForm
     private:
 
         RobotomyRequestForm(void);
-        RobotomyRequestForm &operator=(RobotomyRequestForm &src);
+        RobotomyRequestForm &operator=(RobotomyRequestForm &src); ; // TODO: take care of all the = overloads, don't make them private
         
         std::string _target;
 };

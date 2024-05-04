@@ -19,7 +19,7 @@ class ShrubberyCreationForm : public AForm
     private:
 
         ShrubberyCreationForm(void);
-        ShrubberyCreationForm &operator=(ShrubberyCreationForm &src);
+        ShrubberyCreationForm &operator=(ShrubberyCreationForm &src); ; // TODO: take care of all the = overloads, don't make them private
         
         std::string _target;
 };

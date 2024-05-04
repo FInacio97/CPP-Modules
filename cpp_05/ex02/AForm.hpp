@@ -58,7 +58,7 @@ class AForm
 
     private:
         
-        AForm &operator=(const AForm &src);
+        AForm &operator=(const AForm &src); //TODO: should not be privat.
 
         const std::string   _name;
         bool                _signature;

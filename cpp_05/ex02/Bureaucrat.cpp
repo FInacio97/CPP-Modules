@@ -71,7 +71,7 @@ void Bureaucrat::signAForm(AForm &form)
     {
         std::cout << RED << _name << " couldn't sign " << form.getName()
             << " because " << e.what()  << RESET  << std::endl;
-        throw ;
+        throw ; //TODO: this is wrong
     }   
 }
 
@@ -84,7 +84,7 @@ void Bureaucrat::executeForm(AForm const & form) const
     }
     catch(const std::exception& e)
     {
-        std::cerr <<  _name << " coulden't execute " << form.getName() << " because " << e.what() << '\n';
-        throw ;
+        std::cerr <<  _name << " coulden't execute " << form.getName() << " because " << e.what() << '\n'; //TODO: check how u spell "could not"
+        throw ; //TODO: WTF is this suppose to do?
     }
 }

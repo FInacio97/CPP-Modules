@@ -30,11 +30,11 @@ class Bureaucrat
         Bureaucrat &operator++();
         Bureaucrat &operator--();
 
-        class GradeTooHighException : public std::exception {
+        class GradeTooHighException : public std::exception { 
             public:
                 virtual const char *what() const throw()
                 {
-                    return ("Grade to high...");
+                    return ("Grade to high..."); //TODO: again, this can't be here. u should change it in all the files
                 }
         };
         class GradeTooLowException : public std::exception {
@@ -45,7 +45,7 @@ class Bureaucrat
                 }
         };
 
-        void signAForm(AForm &aform);
+        void signAForm(AForm &aform); //TODO: the name should be signForm
        void executeForm(AForm const & form) const;
 
     private:

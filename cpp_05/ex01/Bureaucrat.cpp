@@ -70,8 +70,8 @@ void Bureaucrat::signForm(Form &form)
     catch(const std::exception& e)
     {
         std::cout << RED << _name << " couldn't sign " << form.getName()
-            << " because "  << RESET;
-        throw ;
+            << " because "  << RESET; //TODO: because what? and add new line
+        // throw ; // TODO: why are u doing this? it's wrong.
     }
     
 }

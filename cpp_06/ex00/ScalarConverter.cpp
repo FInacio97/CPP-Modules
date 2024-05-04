@@ -12,7 +12,7 @@ ScalarConverter::~ScalarConverter(){}
 
 
 
-/*+++++++++++++++ ||    Convertion and Parsing     || ++++++++++++++++*/
+/*+++++++++++++++ ||    Convertion and Parsing     || ++++++++++++++++*/ // TODO: all these fucntion shoul be methods of the class. Why do u have them as just fucntions. this is not C
 
 static void trimEnd(std::string &str)
 {

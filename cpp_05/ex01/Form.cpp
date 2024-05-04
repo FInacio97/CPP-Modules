@@ -66,5 +66,5 @@ void Form::beSigned(Bureaucrat &bureaucrat)
 
 
 
-        //  std::cout << GREEN << bureaucrat.getName()
+        //  std::cout << GREEN << bureaucrat.getName() //TODO: what's this shit?
         //     << " signed " << _name << RESET << std::endl;
