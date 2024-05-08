@@ -8,10 +8,10 @@
 # include <exception>
 # include <typeinfo>
 
-Base *generate(void)
+Base *generate(void) 
 {
     std::srand(std::time(NULL));
-    int ran = rand() % 3;
+    int ran = rand() % 3; //TODO: somehting's wrong here. if u run this function 10 times, it always gives trhe same value
 
     switch (ran)
     {
@@ -30,7 +30,7 @@ Base *generate(void)
     return (NULL);
 }
 
-void indentify(Base *p)
+void indentify(Base *p) // TODO: check how do u spell this word
 {
     std::cout << "++++ Identification by pointer ++++\n";
     {

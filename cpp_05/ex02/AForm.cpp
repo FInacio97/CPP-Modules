@@ -68,7 +68,7 @@ void AForm::checkRequirements(const Bureaucrat &executor) const
 {
     if (!_signature)
         throw AForm::FormUnsignedException();
-    if (executor.getGrade() >= _gradeToExec)
+    if (executor.getGrade() >= _gradeToExec) //TODO: >= is wrong. test it yourself why
         throw AForm::GradeTooLowException();
 }
 

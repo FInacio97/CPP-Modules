@@ -30,11 +30,11 @@ class Bureaucrat
         Bureaucrat &operator++();
         Bureaucrat &operator--();
 
-        class GradeTooHighException : public std::exception {
+        class GradeTooHighException : public std::exception { 
             public:
                 virtual const char *what() const throw()
                 {
-                    return ("Grade to high...");
+                    return ("Grade to high..."); //!!! TODO: YOU CANNOT DEFINE EXCEPTION HERE, U ONLY DECLARE IT HERE AND DEFINE THEM IN CPP FILES
                 }
         };
         class GradeTooLowException : public std::exception {

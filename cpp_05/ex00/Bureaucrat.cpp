@@ -39,17 +39,18 @@ int Bureaucrat::getGrade() const
 
 Bureaucrat &Bureaucrat::operator++()
 {
-    _grade--;
-    if (_grade < 1)
+    if (_grade - 1 < 1)
         throw Bureaucrat::GradeTooHighException();
+    _grade--;
     return (*this);
 }
 
 Bureaucrat &Bureaucrat::operator--()
 {
-    _grade++;
-    if (_grade > 150)
+    // TODO: we could increment even if the grade was to low, u need to check berore incrementation
+    if (_grade + 1 > 150) 
         throw Bureaucrat::GradeTooLowException();
+    _grade++;
     return (*this);
 }
 
