@@ -21,6 +21,9 @@ class PmergeMe
 
         void sortPairsVector();
         void sortHalfVector(int n);
+        void sortWithJacobsVector(int i);
+        void sortWithJacobsFirstElementsVector();
+        void sorterVector(int maxValue, int toInsert);
 
         void sortPairsList();
         void sortHalfList();

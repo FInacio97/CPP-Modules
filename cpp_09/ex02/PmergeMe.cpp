@@ -72,7 +72,6 @@ void PmergeMe::sortPairsVector()
 
 void PmergeMe::sortHalfVector(int i)
 {
-    std::cout << "here\n";
     if (i == 0)
     {
         _vec.clear();
@@ -86,6 +85,65 @@ void PmergeMe::sortHalfVector(int i)
         _vec.insert(std::lower_bound(_vec.begin(), _vec.end(), _vecPairs[i].second), _vecPairs[i].second);
         PmergeMe::sortHalfVector(i + 1);   
     }
+}
+
+void PmergeMe::sorterVector(int maxValue, int toInsert)
+{
+    std::vector<int>::iterator end;
+
+    for (unsigned long int i = 0; i < _vec.size(); i++)
+    {
+        if (_vec[i] == maxValue)
+            end = _vec.begin() + i;
+    }
+    _vec.insert(std::lower_bound(_vec.begin(), end, toInsert), toInsert);
+}
+
+void PmergeMe::sortWithJacobsFirstElementsVector()
+{
+
+    sorterVector(_vecPairs[0].second, _vecPairs[0].first);
+
+    sorterVector(_vecPairs[1].second, _vecPairs[1].first);
+ 
+    std::cout << "\n\n++++++++++ for index: 0 ++++++++++\n";
+    displayListOrVector(0); 
+
+    sortWithJacobsVector(3);
+}
+
+void PmergeMe::sortWithJacobsVector(int jacobsIndex)
+{
+    if (jacobsIndex == 0)
+    {
+        sortWithJacobsFirstElementsVector();
+        return ;
+    }
+
+    int i = _jacobs[jacobsIndex];
+
+    while (_nbrElements <= i)
+        i--;
+
+    
+    std::cout << "\n\n++++++++++ for index: " << jacobsIndex << "++++++++++\n";
+    displayListOrVector(0); 
+    
+    
+    if (_jacobs[jacobsIndex] >= (static_cast<int>(_vec.size() / 2)))
+        return;
+        
+    std::cout << "\n\n";
+
+    for (; i != _jacobs[jacobsIndex - 1]; i--)
+    {
+        std::cout << "inserting element[" << i << "]\n";
+        sorterVector(_vecPairs[i].second, _vecPairs[i].first);
+    }
+
+
+    
+    sortWithJacobsVector(jacobsIndex + 1);
 }
 
 void PmergeMe::displayListOrVector(int n)
