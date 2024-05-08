@@ -32,20 +32,14 @@ class Bureaucrat
 
         class GradeTooHighException : public std::exception { 
             public:
-                virtual const char *what() const throw()
-                {
-                    return ("Grade to high..."); //TODO: again, this can't be here. u should change it in all the files
-                }
+                virtual const char *what() const throw();
         };
         class GradeTooLowException : public std::exception {
             public:
-                virtual const char *what() const throw()
-                {
-                    return ("Grade to low...");
-                }
+                virtual const char *what() const throw();
         };
 
-        void signAForm(AForm &aform); //TODO: the name should be signForm
+        void signForm(AForm &aform);
        void executeForm(AForm const & form) const;
 
     private:

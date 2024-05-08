@@ -20,6 +20,7 @@ class AForm
         AForm(void);
         AForm(const AForm &src);
         AForm(const std::string name, const int gts, const int gte);
+        AForm &operator=(const AForm &src);
         virtual ~AForm();
 
         // Getters
@@ -29,27 +30,19 @@ class AForm
         int                     getGradeToExec() const;
 
         class GradeTooHighException : public std::exception{
-            virtual const char *what() const throw(){
-                return ("Grade too high...");
-            }
+            virtual const char *what() const throw();
         };
 
         class GradeTooLowException : public std::exception{
-            virtual const char *what() const throw(){
-                return ("Grade too low...");
-            }
+            virtual const char *what() const throw();
         };
 
         class FormPrevSignedException : public std::exception{
-            virtual const char *what() const throw(){
-                return ("Form was already signed");
-            }
+            virtual const char *what() const throw();
         };
 
         class FormUnsignedException : public std::exception{
-            virtual const char *what() const throw(){
-                return ("Form needs to be signed!");
-            }
+            virtual const char *what() const throw();
         };
 
         void            beSigned(const Bureaucrat &bureaucrat);
@@ -58,7 +51,6 @@ class AForm
 
     private:
         
-        AForm &operator=(const AForm &src);
 
         const std::string   _name;
         bool                _signature;

@@ -30,22 +30,16 @@ class Bureaucrat
         Bureaucrat &operator++();
         Bureaucrat &operator--();
 
-        class GradeTooHighException : public std::exception {
+        class GradeTooHighException : public std::exception { 
             public:
-                virtual const char *what() const throw()
-                {
-                    return ("Grade to high...");
-                }
+                virtual const char *what() const throw();
         };
         class GradeTooLowException : public std::exception {
             public:
-                virtual const char *what() const throw()
-                {
-                    return ("Grade to low...");
-                }
+                virtual const char *what() const throw();
         };
 
-        void signAForm(AForm &aform);
+        void signForm(AForm &aform);
        void executeForm(AForm const & form) const;
 
     private:

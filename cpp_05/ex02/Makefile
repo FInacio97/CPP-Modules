@@ -16,4 +16,4 @@ fclean:
 
 re: fclean all
 
-.PHONY: all fclean #TODO: u don't have re here. Also u don't have clean, it's mandatory
+.PHONY: all fclean re

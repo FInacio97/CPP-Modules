@@ -7,7 +7,13 @@ RobotomyRequestForm::RobotomyRequestForm(RobotomyRequestForm &src) : AForm(src){
 RobotomyRequestForm::RobotomyRequestForm(const std::string &target) : AForm("RobotomyRequestForm", 72, 45),
                                                                              _target(target){}
 
-RobotomyRequestForm &RobotomyRequestForm::operator=(RobotomyRequestForm &src){(void) src; return (*this);}
+RobotomyRequestForm &RobotomyRequestForm::operator=(RobotomyRequestForm &src)
+{
+    if (this == &src)
+        return (src);
+    AForm::operator=(src);
+    return(*this);
+}
 
 RobotomyRequestForm::~RobotomyRequestForm(){}
 

@@ -32,17 +32,11 @@ class Bureaucrat
 
         class GradeTooHighException : public std::exception { 
             public:
-                virtual const char *what() const throw()
-                {
-                    return ("Grade to high..."); //!!! TODO: YOU CANNOT DEFINE EXCEPTION HERE, U ONLY DECLARE IT HERE AND DEFINE THEM IN CPP FILES
-                }
+                virtual const char *what() const throw();
         };
         class GradeTooLowException : public std::exception {
             public:
-                virtual const char *what() const throw()
-                {
-                    return ("Grade to low...");
-                }
+                virtual const char *what() const throw();
         };
 
         void signForm(Form &form);

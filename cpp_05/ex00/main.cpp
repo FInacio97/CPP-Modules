@@ -36,6 +36,8 @@ int main()
     {
         try
         {
+            Bureaucrat correct("correct", 1);
+            std::cout << correct;
             Bureaucrat wrong("Wrong", 0);
             std::cout << RED << "If this prints, im an idiot..." << RESET << std::endl;
         }
@@ -51,7 +53,9 @@ int main()
     {
         try
         {
-            Bureaucrat wrong("Wrong", 200);
+            Bureaucrat correct("correct", 150);
+            std::cout << correct;
+            Bureaucrat wrong("Wrong", 151);
             std::cout << RED << "If this prints, im an idiot..." << RESET << std::endl;
         }
         catch(const std::exception& e)
@@ -69,6 +73,23 @@ int main()
             Bureaucrat wrong("Wrong", 1);
             std::cout << wrong;
             ++wrong;
+            std::cout << RED << "If this prints, im an idiot..." << RESET << std::endl;
+        }
+        catch(const std::exception& e)
+        {
+            std::cerr << e.what() << '\n';
+        }
+        
+    }
+
+    std::cout << YELLOW << "\n+++++ TEST FIVE: Invalid decrement +++++\n" << RESET;
+
+    {
+        try
+        {
+            Bureaucrat wrong("Wrong", 150);
+            std::cout << wrong;
+            --wrong;
             std::cout << RED << "If this prints, im an idiot..." << RESET << std::endl;
         }
         catch(const std::exception& e)

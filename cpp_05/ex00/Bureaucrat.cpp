@@ -39,7 +39,7 @@ int Bureaucrat::getGrade() const
 
 Bureaucrat &Bureaucrat::operator++()
 {
-    if (_grade - 1 < 1)
+    if (_grade <= 1)
         throw Bureaucrat::GradeTooHighException();
     _grade--;
     return (*this);
@@ -47,8 +47,7 @@ Bureaucrat &Bureaucrat::operator++()
 
 Bureaucrat &Bureaucrat::operator--()
 {
-    // TODO: we could increment even if the grade was to low, u need to check berore incrementation
-    if (_grade + 1 > 150) 
+    if (_grade >= 150) 
         throw Bureaucrat::GradeTooLowException();
     _grade++;
     return (*this);
@@ -59,4 +58,14 @@ std::ostream &operator<<(std::ostream &o, Bureaucrat const src)
     o << GREEN << src.getName() << CYAN << ", bureaucrat grade "
         << src.getGrade() << ".\n" << RESET;
     return (o);
+}
+
+const char *Bureaucrat::GradeTooHighException::what() const throw()
+{
+    return ("Grade to high...");
+}
+
+const char *Bureaucrat::GradeTooLowException::what() const throw()
+{
+    return ("Grade to low...");
 }

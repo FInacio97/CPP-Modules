@@ -19,6 +19,7 @@ class Form
 
         Form(const Form &src);
         Form(const std::string name, const int gts, const int gte);
+        Form &operator=(const Form &src);
         ~Form();
 
         // Getters
@@ -30,9 +31,7 @@ class Form
         void beSigned(Bureaucrat &bureaucrat);
 
         class GradeTooHighException : public std::exception{
-            virtual const char *what() const throw(){
-                return ("Grade too high...");
-            }
+            virtual const char *what() const throw();
         };
 
         class GradeTooLowException : public std::exception{
@@ -42,15 +41,12 @@ class Form
         };
 
         class FormPrevSignedException : public std::exception{
-            virtual const char *what() const throw(){
-                return ("Form was already signed");
-            }
+            virtual const char *what() const throw();
         };
 
     private:
         
         Form(void);
-        Form &operator=(const Form &src); //TODO: make this public
 
         const std::string   _name;
         bool                _signature;

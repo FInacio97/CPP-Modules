@@ -6,6 +6,8 @@
 # include "ShrubberyCreationForm.hpp"
 
 # define NBR_FORMS 3
+class Intern;
+
 
 class Intern
 {
@@ -14,14 +16,11 @@ class Intern
 		Intern(void);
 		~Intern(void);
 
-		AForm *makeForm(std::string formName, std::string target);
-
+		AForm *makeForm(const std::string &formName, const std::string &target);
+		
 		class NoFormException : public std::exception {
             public:
-                virtual const char *what() const throw()
-                {
-                    return ("No. That form is executed elsewhere...");
-                }
+                virtual const char *what() const throw();
         };
 
 	private:
@@ -29,6 +28,7 @@ class Intern
 		Intern(Intern &src);
 		Intern &operator=(Intern &src);
 
+		static AForm *(*formConstructors[3])(const std::string &target);
 		std::string _form_names[NBR_FORMS];
 };
 

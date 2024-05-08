@@ -1,7 +1,7 @@
 # include "Form.hpp"
 
 Form::Form(void) : _name("Nameless"), _signature(false),
-                    _gradeToSign(0), _gradeToExec(0) {}
+                    _gradeToSign(1), _gradeToExec(1) {}
 
 Form::Form(const Form &src) : _name(src._name), _signature(false),
                              _gradeToSign(src._gradeToSign), _gradeToExec(src._gradeToExec) {}
@@ -16,7 +16,9 @@ Form::Form(const std::string name, const int gts, const int gte) : _name(name), 
 }
 
 Form    &Form::operator=(const Form &src) {
-    (void) src;
+    if (this == &src)
+        return (*this);
+    this->_signature = src._signature;
     return (*this);
 }
 
@@ -64,7 +66,17 @@ void Form::beSigned(Bureaucrat &bureaucrat)
         throw Form::GradeTooLowException();
 }
 
+const char *Form::GradeTooHighException::what() const throw()
+{
+    return ("Grade too high...");
+}
 
+const char *Form::GradeTooLowException::what() const throw()
+{
+    return ("Grade too low...");
+}
 
-        //  std::cout << GREEN << bureaucrat.getName() //TODO: what's this shit?
-        //     << " signed " << _name << RESET << std::endl;
+const char *Form::FormPrevSignedException::what() const throw()
+{
+    return ("Form was already signed");
+}

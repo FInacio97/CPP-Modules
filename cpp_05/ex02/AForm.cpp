@@ -16,7 +16,9 @@ AForm::AForm(const std::string name, const int gts, const int gte) : _name(name)
 }
 
 AForm    &AForm::operator=(const AForm &src) {
-    (void) src;
+    if (this == &src)
+        return (*this);
+    this->_signature = src._signature;
     return (*this);
 }
 
@@ -68,9 +70,26 @@ void AForm::checkRequirements(const Bureaucrat &executor) const
 {
     if (!_signature)
         throw AForm::FormUnsignedException();
-    if (executor.getGrade() >= _gradeToExec) //TODO: >= is wrong. test it yourself why
+    if (executor.getGrade() > _gradeToExec)
         throw AForm::GradeTooLowException();
 }
 
+const char *AForm::GradeTooHighException::what() const throw()
+{
+    return ("Grade too high...");
+}
 
+const char *AForm::GradeTooLowException::what() const throw()
+{
+    return ("Grade too low...");
+}
 
+const char *AForm::FormPrevSignedException::what() const throw()
+{
+    return ("Form was already signed");
+}
+
+const char *AForm::FormUnsignedException::what() const throw()
+{
+    return ("Form needs to be signed!");
+}

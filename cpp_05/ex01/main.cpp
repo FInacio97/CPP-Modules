@@ -35,7 +35,7 @@ int main()
         std::cerr << e.what() << '\n';
     }
 
-    std::cout << YELLOW << "TEST THREE: Form grade out of bounds" << std::endl;
+    std::cout << YELLOW << "TEST THREE: Form grade out of bounds" << RESET << std::endl;
 
      try
     {

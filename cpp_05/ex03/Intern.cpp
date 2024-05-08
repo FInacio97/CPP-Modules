@@ -15,33 +15,50 @@ Intern &Intern::operator=(Intern &src) {(void) src; return(*this);}
 
 Intern::~Intern(void) {}
 
-AForm *Intern::makeForm(std::string formName, std::string target) //TODO: this is wrong. U have to use function pointers in this exercise
+AForm *createShrubberyCreationForm(const std::string &target)
 {
-    AForm   *form;
+    AForm   *form = new ShrubberyCreationForm(target);
+
+    std::cout << GREEN << "Intern creates " << form->getName() << RESET << std::endl;
+    return (form);
+}
+
+AForm *createRobotomyRequestForm(const std::string &target)
+{
+    AForm   *form = new RobotomyRequestForm(target);
+
+    std::cout << GREEN << "Intern creates " << form->getName() << RESET << std::endl;
+    return (form);
+}
+
+AForm *createPresidentialPardonForm(const std::string &target)
+{
+    AForm   *form = new PresidentialPardonForm(target);
+
+    std::cout << GREEN << "Intern creates " << form->getName() << RESET << std::endl;
+    return (form);
+}
+
+AForm *(*Intern::formConstructors[3])(const std::string &target)
+                                        = { &createShrubberyCreationForm,
+                                            &createRobotomyRequestForm, 
+                                            &createPresidentialPardonForm };
+
+AForm *Intern::makeForm(const std::string &formName, const std::string &target)
+{
     int     i;
 
     for (i = 0; i < NBR_FORMS; i++)
-        if (_form_names[i] == formName)
-            break;
-    switch (i)
     {
-    case 0:
-        form = new ShrubberyCreationForm(target);
-        break;
-    
-    case 1:
-        form = new RobotomyRequestForm(target);
-        break;
-    
-    case 2:
-        form = new PresidentialPardonForm(target);
-        break;
-
-    default:
-        throw Intern::NoFormException();
-        break;
+        if (_form_names[i] == formName)
+            return (formConstructors[i](target));
     }
     
-    std::cout << GREEN << "Intern creates " << form->getName() << RESET << std::endl;
-    return (form);
+        throw Intern::NoFormException();
+        return (NULL);
+}
+
+const char *Intern::NoFormException::what() const throw()
+{
+    return ("No. That form is executed elsewhere...");
 }

@@ -12,6 +12,7 @@ class ShrubberyCreationForm : public AForm
 
         ShrubberyCreationForm(ShrubberyCreationForm &src);
         ShrubberyCreationForm(const std::string &target);
+        ShrubberyCreationForm &operator=(ShrubberyCreationForm &src);
         ~ShrubberyCreationForm();
     
         void execute(Bureaucrat const & executor) const;
@@ -19,7 +20,6 @@ class ShrubberyCreationForm : public AForm
     private:
 
         ShrubberyCreationForm(void);
-        ShrubberyCreationForm &operator=(ShrubberyCreationForm &src); ; // TODO: take care of all the = overloads, don't make them private
         
         std::string _target;
 };

@@ -60,7 +60,7 @@ std::ostream &operator<<(std::ostream &o, Bureaucrat const src)
     return (o);
 }
 
-void Bureaucrat::signAForm(AForm &form)
+void Bureaucrat::signForm(AForm &form)
 {
     try
     {
@@ -71,7 +71,6 @@ void Bureaucrat::signAForm(AForm &form)
     {
         std::cout << RED << _name << " couldn't sign " << form.getName()
             << " because " << e.what()  << RESET  << std::endl;
-        throw ; //TODO: this is wrong
     }   
 }
 
@@ -84,7 +83,16 @@ void Bureaucrat::executeForm(AForm const & form) const
     }
     catch(const std::exception& e)
     {
-        std::cerr <<  _name << " coulden't execute " << form.getName() << " because " << e.what() << '\n'; //TODO: check how u spell "could not"
-        throw ; //TODO: WTF is this suppose to do?
+        std::cerr <<  _name << " could not execute " << form.getName() << " because " << e.what() << '\n';
     }
+}
+
+const char *Bureaucrat::GradeTooHighException::what() const throw()
+{
+    return ("Grade to high...");
+}
+
+const char *Bureaucrat::GradeTooLowException::what() const throw()
+{
+    return ("Grade to low...");
 }
