@@ -9,6 +9,7 @@ Array<T>::Array(void) : _array(NULL), _size(0) {}
 template <typename T>
 Array<T>::Array(const Array &src) : _array(NULL), _size(0)
 {
+	// TODO: I GUESS U NEED A DEEP COPY NOT SURE THOUGH check my github :)
     *this = src;
 }
 
