@@ -9,15 +9,14 @@ Array<T>::Array(void) : _array(NULL), _size(0) {}
 template <typename T>
 Array<T>::Array(const Array &src) : _array(NULL), _size(0)
 {
-	// TODO: I GUESS U NEED A DEEP COPY NOT SURE THOUGH check my github :)
     *this = src;
 }
 
 template <typename T>
-Array<T>::Array(unsigned int n)
+Array<T>::Array(unsigned int n)  : _array(new T[n]), _size(n)
 {
-    _size = n;
-    _array = new T[n];
+    for (unsigned int i = 0; i < n; i++)
+        _array[i] = 0;
 }
 
 template <typename T>
@@ -35,11 +34,19 @@ Array<T> &Array<T>::operator=(const Array &src)
 }
 
 template <typename T>
-T &Array<T>::operator[](int i)
+T	&Array<T>::operator[](const size_t i)
 {
-    if (i < 0 || i >= static_cast<int>(_size))
-        throw Array::OutOfBoundsException();
-    return (this->_array[i]);
+    if (i >= _size)
+        throw OutOfBoundsException();
+    return (_array[i]);
+}
+
+template <typename T>
+const T	&Array<T>::operator[](const size_t i) const
+{
+    if (i >= _size)
+        throw OutOfBoundsException();
+    return (_array[i]);
 }
 
 template <typename T>
@@ -50,5 +57,11 @@ Array<  T>::~Array(void)
 
 template <typename T>
 unsigned int Array<T>::size() const {return (_size);}
+
+template <typename T>
+const char *Array<T>::OutOfBoundsException::what() const throw()
+{
+    return ("Index out of bounds");
+}
 
 # endif

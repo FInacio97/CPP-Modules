@@ -8,12 +8,15 @@ int main(int ac, char **av)
 
     p.parsing(ac, av);
     p.jacobsGenerator();
-    p.sortPairsVector();
-    p.sortHalfVector(0);
-    p.displayListOrVector(0);
-    p.sortWithJacobsVector(0);
 
-    std::cout << "\n\n+++ After sorting first two +++\n\n";
-    p.displayListOrVector(0);
+    p.sorting();
+    // p.sortPairsVector();
+    // p.sortHalfVector(0);
+    // p.displayListOrVector(0);
+    // p.sortWithJacobsVector(0);
+
+    // p.displayListOrVector(0);
+
+    
 
 }

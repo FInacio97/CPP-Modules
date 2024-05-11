@@ -60,10 +60,8 @@ int Span::shortestSpan()
         throw std::exception();
 
     if (!_newNmbr)
-    {
-        _newNmbr = false;
         return (_minSpan);
-    }
+
     if (_minSpan == -1)
         _minSpan = *(_vector.begin() + 1) - *(_vector.begin()); 
           

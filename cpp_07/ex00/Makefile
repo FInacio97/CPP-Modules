@@ -15,6 +15,4 @@ fclean:
 
 re: fclean all
 
-TODO: CLEAN IS MISSING!
-
 .PHONY: all fclean re
