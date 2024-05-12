@@ -16,21 +16,13 @@ class PmergeMe
         PmergeMe();
         ~PmergeMe();
 
+        bool isNumber(const std::string &str);
+        bool checkOverflow(std::string token);
+        void doubleCheck(int ac);
         void parsing(int ac,char **av);
         void jacobsGenerator();
-        // void displayListOrVector(int i);
-
-        // void FordJohnson();
         void sorting();
 
-        // void sortPairsVector();
-        // void sortHalfVector(int n);
-        // void sortWithJacobsVector(int i);
-        // void sortWithJacobsFirstElementsVector();
-        // void sorterVector(int maxValue, int toInsert);
-
-
-        // bool isSorted();
 
     private:
 
@@ -64,7 +56,6 @@ class PmergeMe
             cont.pop_back();
             vec_size--;
         }
-        // displayElements(cont);
 
         for (int i = 0; i < vec_size; i += 2)
         {
@@ -74,27 +65,28 @@ class PmergeMe
                 pair.push_back(std::make_pair(cont[i + 1], cont[i]));
         }
 
-        // for (int i = 0; i < (vec_size / 2); i++)
-        //     std::cout << pair[i].first << " | " << pair[i].second << std::endl;
     }
 
-    template <typename C, typename P>
-    void sortHalfElements(int i, C &cont, P &pair)
+    template <typename P>
+    void orderPairs(unsigned long i, P &pair)
     {
-        if (i == 0)
-        {
-            cont.clear();
-            cont.push_back(pair[i].second);
-            sortHalfElements(i + 1, cont, pair);
-        }
-        else if (i == _nbrElements / 2)
+        if (i >= pair.size())
             return ;
-        else
+
+        for (unsigned long j = i + 1; j < pair.size(); j++)
         {
-            cont.insert(std::lower_bound(cont.begin(), cont.end(), pair[i].second), pair[i].second);
-            sortHalfElements(i + 1, cont, pair);   
+            if (pair[i].second > pair[j].second)
+            {
+                std::pair<int, int> temp = pair[i];
+                pair[i] = pair[j];
+                pair[j] = temp;
+            }
         }
+        orderPairs(i + 1, pair);
     }
+
+
+
 
     template <typename C>
     void displayElements(C &cont)
@@ -123,10 +115,10 @@ class PmergeMe
     template <typename C, typename P>
     void sortWithJacobsFirstElements(C &cont, P &pair)
     {
-
         sorter(pair[0].second, pair[0].first, cont);
 
-        sorter(pair[1].second, pair[1].first, cont);
+        if (pair.size() > 1)
+            sorter(pair[1].second, pair[1].first, cont);
     
         // std::cout << "\n\n++++++++++ for index: 0 ++++++++++\n";
         // displayElements(cont);
@@ -147,12 +139,14 @@ class PmergeMe
         int i = _jacobs[jacobsIndex];
         // std::cout << "starting index: " << i << std::endl;
 
-        while ((int)pair.size() <= i)
-        {
-            i--;
-            // std::cout << "vecPair size: " << pair.size() << std::endl;
-            // std::cout << "index: " << i << std::endl;
-        }
+        if (i >= (int)pair.size())
+            i = (int)pair.size() - 1;
+        // while ((int)pair.size()  i)
+        // {
+        //     i--;
+        //     // std::cout << "vecPair size: " << pair.size() << std::endl;
+        //     // std::cout << "index: " << i << std::endl;
+        // }
 
         // std::cout << "index: " << i << std::endl;
 
@@ -176,11 +170,7 @@ class PmergeMe
         if (_jacobs[jacobsIndex] > (int)pair.size())
             return ;
         sortWithJacobs(jacobsIndex + 1, cont, pair);
-        if(jacobsIndex == 3 && _remainder != -1)
-        {
-            // std::cout << "remainder: " << _remainder << std::endl;
-            sorter(-1, _remainder, cont);
-        }
+        
     }
 
     template <typename C>
@@ -188,7 +178,7 @@ class PmergeMe
     {
         if ((int)cont.size() != _nbrElements)
         {
-            // std::cout << "wrong values\n";
+            std::cout << "wrong values\n";
             return (false);
         }
 
@@ -196,7 +186,7 @@ class PmergeMe
         {
             if (cont[i] > cont[i + 1])
             {
-                // std::cout << "wrong order: " << cont[i] <<  " " << cont[i + 1] << std::endl;
+                std::cout << "wrong order: " << cont[i] <<  " " << cont[i + 1] << std::endl;
                 return (false);
             }
         }
@@ -207,9 +197,16 @@ class PmergeMe
     void FordJohnson(C &cont, P &pair)
     {
         sortPairs(cont, pair);
-        sortHalfElements(0, cont, pair);
+        cont.clear();
+        orderPairs(0, pair);
+
+        for (unsigned long i = 0; i < pair.size(); i++)
+            cont.push_back(pair[i].second);
+        // sortHalfElements(0, cont, pair);
         // displayElements(cont);
         sortWithJacobs(0, cont, pair);
+        if(_remainder != -1)
+            sorter(-1, _remainder, cont);
 
         if (isSorted(cont))
             std::cout << "Is sorted\n";

@@ -1,8 +1,9 @@
 # include "iter.hpp"
 
-void func(int n)
+int func(int n)
 {
     std::cout << "value: " << n << std::endl;
+    return (2);
 }
 
 int main()
