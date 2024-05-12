@@ -195,6 +195,10 @@ void BitcoinExchange::Exchange(char *path)
             date = buffer.substr(0, 10);
             multiplier = checkValue(buffer, false);
             lowIt = _bitcoinMap.lower_bound(date);
+			// TODO: check how it works"
+			// https://en.cppreference.com/w/cpp/container/map/lower_bound
+			// maybe this is easier ;)  ???
+			// https://en.cppreference.com/w/cpp/container/map/upper_bound
             result = lowIt->second * multiplier;
 
             std::cout << date << " => " << multiplier << " = " << std::fixed << std::setprecision(2) << result << std::endl;
