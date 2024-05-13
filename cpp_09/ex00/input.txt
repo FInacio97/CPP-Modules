@@ -1,0 +1,44 @@
+# Input file for CPP09 ex00
+# To make it easier my program ignores all lines that start with a hash
+
+# From the subject:
+# • Each line in this file must use the following format: "date | value".
+# • A valid date will always be in the following format: Year-Month-Day.
+# • A valid value must be either a float or a positive integer, between 0 and 1000.
+
+# This file contains all the test cases!
+
+# INTS with random whitespaces
+date | value
+2012-11-30 		 |  100   
+2013-10-29 		|    101
+2014-09-28  |   102
+
+# FLOATS
+2023-01-03 | 0.42
+2023-01-03 | 42.4
+
+# To Big and Negative
+2023-01-03 | 4242
+2023-01-03 | -42
+2023-01-03 | -0.42
+
+# Wrong Date
+2001-01-01 | 42
+2042-42-42 | 42
+
+# Some more correct onces but the dates doesn't exist
+2015-12-22 | 12
+2023-01-01 | 0
+2023-01-02 | 42
+2023-01-03 | 1000
+
+# The first and last date should work
+2009-01-02 | 100
+2022-03-29 | 100
+
+# Date before the first date in data
+2000-12-12 | 42
+2009-01-01 | 42
+
+
